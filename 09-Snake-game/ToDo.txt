@@ -1,0 +1,6 @@
+Things to improve:
+
+1. Fix the issue with the borders (right and bottom)
+2. Fix problem where food appears over the snake
+3. Implement a database to save all time highscores
+4. Create the snake with PyGame rather than Turtle
