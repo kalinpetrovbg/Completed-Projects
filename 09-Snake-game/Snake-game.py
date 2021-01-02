@@ -29,25 +29,36 @@ food.penup()
 food.goto(0, 100)
 
 # Body
-
 body = []
+
+# Scoring system
+score = 0
+high_score = 0
+
+pen = turtle.Turtle()
+pen.speed(0)
+pen.shape("square")
+pen.color("white")
+pen.penup()
+pen.hideturtle()
+pen.goto(0, 220)
+pen.write("Score: 0  High Score: 0", align="center", font=("Courier", 17, "normal"))
+
 
 
 # Movement
 def go_up():
-    head.direction = "up"
-
-
+    if head.direction != "down":
+        head.direction = "up"
 def go_down():
-    head.direction = "down"
-
-
+    if head.direction != "up":
+        head.direction = "down"
 def go_left():
-    head.direction = "left"
-
-
+    if head.direction != "right":
+        head.direction = "left"
 def go_right():
-    head.direction = "right"
+    if head.direction != "left":
+        head.direction = "right"
 
 
 def move():
@@ -79,7 +90,26 @@ wn.onkeypress(go_right, "d")
 while True:
     wn.update()
 
-    # Check for a collision
+    # Check for a collision with borders:
+    if head.xcor() > 240 or head.xcor()< -240 or head.ycor() > 240 or head.ycor() < -240:
+        time.sleep(1)
+        head.goto(0, 0)
+        head.direction = "stop"
+
+        for segment in body:
+            segment.goto(1000, 1000)
+
+        score = 0
+
+        # Reset the delay
+        # delay = 0.01
+
+        pen.clear()
+        pen.write(f"Score: {score}  High Score: {high_score}", align="center", font=("Courier", 17, "normal"))
+
+        body.clear()
+
+    # Check for a collision with the food
     if head.distance(food) < 20:
         # New food is generated
         x = random.randint(-240, 240)
@@ -92,6 +122,16 @@ while True:
         new_body.color("grey")
         new_body.penup()
         body.append(new_body)
+
+        # Make it harder
+        # delay -= 0.001
+
+        score += 10
+        if score > high_score:
+            high_score = score
+
+        pen.clear()
+        pen.write(f"Score: {score}  High Score: {high_score}", align="center", font=("Courier", 17, "normal"))
 
     # Move the tail
     for index in range(len(body) - 1, 0, -1):
@@ -106,6 +146,28 @@ while True:
         body[0].goto(x, y)
 
     move()
+
+    # Check for collisions with itself
+    for segment in body:
+        if segment.distance(head) < 20:
+            time.sleep(1)
+            head.goto(0, 0)
+            head.direction = "stop"
+            # Remove the tail
+            for segment in body:
+                segment.goto(1000, 1000)
+
+            score = 0
+
+            # Reset the delay
+            # delay = 0.01
+
+            pen.clear()
+            pen.write(f"Score: {score}  High Score: {high_score}", align="center", font=("Courier", 17, "normal"))
+
+            body.clear()
+
+
 
     time.sleep(delay)
 
