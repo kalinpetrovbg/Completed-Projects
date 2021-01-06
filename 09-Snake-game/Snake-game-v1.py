@@ -8,7 +8,7 @@ delay = 0.1
 wn = turtle.Screen()
 wn.title("Snake Game v1")
 wn.bgcolor("black")
-wn.setup(width=500, height=500)
+wn.setup(width=590, height=600)
 wn.tracer(0)
 
 # Snake
@@ -23,7 +23,7 @@ head.direction = "stop"
 # Food
 food = turtle.Turtle()
 food.speed(0)
-food.shape("square")
+food.shape("circle")
 food.color("red")
 food.penup()
 food.goto(0, 100)
@@ -91,7 +91,7 @@ while True:
     wn.update()
 
     # Check for a collision with borders:
-    if head.xcor() > 240 or head.xcor()< -240 or head.ycor() > 240 or head.ycor() < -240:
+    if head.xcor() > 280 or head.xcor()< -280 or head.ycor() > 290 or head.ycor() < -290:
         time.sleep(1)
         head.goto(0, 0)
         head.direction = "stop"
@@ -112,8 +112,8 @@ while True:
     # Check for a collision with the food
     if head.distance(food) < 20:
         # New food is generated
-        x = random.randint(-240, 240)
-        y = random.randint(-240, 240)
+        x = random.randint(-280, 280)
+        y = random.randint(-290, 290)
         food.goto(x, y)
 
         new_body = turtle.Turtle()
