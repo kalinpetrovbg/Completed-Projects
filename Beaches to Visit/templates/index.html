@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Beaches to Visit</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light" style="margin-bottom:2%; background:#417690">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav" style="margin-left:100px;">
+                <li class="nav-item">
+                    <a class="nav-link" style="color:white" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" style="color:white" href="/list_view">All Places</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" style="color:white" href="/add_place">+ Add Place</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" style="color:white" href="/remove_place">- Remove Place</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" style="color:white" href="#">Edit Place</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container" style="max-width: 40%!important;">
+    <h1 class='text-center'>Home page</h1>
+    <div class="text">
+        <h3 class style="margin-top: 50px">Let's show all beaches here:</h3>
+        <ol style="margin-top:10px">
+        {% for place in places %}
+        <li>{{ place.name }}, {{ place.location }} ... {{ place.distance }}
+            km from Sofia</li>
+        {% endfor %}
+        </ol>
+    </div>
+    </div>
+</body>
+</html>
